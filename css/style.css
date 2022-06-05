@@ -1,0 +1,159 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  /* border: 1px solid black; */
+}
+
+:root {
+  --persian-green: #1b998b;
+  --persian-green-hover: rgb(30, 173, 156);
+  --indigo-dye: #033f63ff;
+  --aero-blue: #8BF9C7;
+  --off-white: #ffffffdb;
+  --green: #1b998b;
+  --black: #000000;
+  --melon: #fcbfb7ff;
+  --earth-yellow: rgb(233, 216, 160);
+}
+
+body {
+  background-color: var(--off-white);
+  color: var(--black);
+	margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Work Sans', sans-serif;
+}
+
+#wrapper {
+  background-color: var(--off-white);
+  border: 1px solid var(--off-white);
+  height: 92vh;
+  width: 96vw;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/*------------------------------Header----------------------------*/
+
+header {
+  display: flex;
+  /* border: 1px solid black; */
+}
+
+nav:last-of-type {
+  margin-left: auto;
+}
+
+#icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2.2em;
+}
+
+#icons > i {
+  margin-right: 1em;
+  font-size: 1.5em;
+}
+
+nav {
+  margin-right: 2em;
+}
+
+#nav-bar {
+  font-size: 1.5em;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+#nav-bar > li {
+  margin-left: 1em;
+  padding: 0;
+}
+
+#mode-switch {
+  padding: .1em .2em .1em 2em !important;
+  position: relative;
+  top: -1px;
+
+  background-color: var(--aero-blue);
+  border-radius: 20px;
+}
+
+
+/*------------------------------Body------------------------------*/
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+}
+
+#hero {
+  margin-top: 15em;
+  margin-left: 2em;
+}
+
+#name {
+  font-size: 6em;
+}
+
+#sub-name {
+  font-size: 1.2em;
+  padding-left: .3em;
+}
+
+#chat-box-container {
+  display: flex;
+  position: relative;
+  right: 2em;
+  top: 7.5em;
+  height: 45vh;
+  width: 40vw;
+
+  margin-left: auto;
+
+  justify-content: center;
+  align-items: center;
+  /* background-color: var(--persian-green);*/
+  border: 1px solid black;
+}
+
+#chat-box {
+  height: 85%;
+  width: 90%;
+
+  border: 1px solid black;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: right;
+}
+
+#chat-box > li {
+  
+}
+
+.chat-text {
+  background-color: var(--aero-blue);
+}
+
+
+
+/*------------------------------Footer----------------------------*/
