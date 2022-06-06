@@ -126,12 +126,14 @@ main {
   right: 2em;
   top: 7.5em;
   height: 45vh;
-  width: 40vw; /* Responsive Check */
+  width: 30vw; /* Responsive Check */
   overflow: scroll;
   margin-left: auto;
   justify-content: center;
   align-items: center;
-  /* background-color: var(--persian-green);*/
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  
+  /* background-color: var(--persian-green); */
 
   border-radius: 20px;
 }
@@ -142,6 +144,8 @@ main {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
+  /* flex-direction: row-reverse; */
+  
 }
 
 #chat-box > #messages {
@@ -166,8 +170,9 @@ main {
   width: max-content;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: flex-end;
   padding-inline-start: 40px;
+  margin-left: auto;
 }
 
 .response-text {
@@ -202,9 +207,20 @@ main {
 #input-field > input {
   font-family: 'Work Sans', sans-serif;
   border-radius: 10px;
-  border: 1px solid black;
-  width: 40vw;
+  border: none;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  width: 30vw;
   height: 3em;
   text-align: left;
   padding-left: 1em;
+}
+
+.underline {
+  letter-spacing: 0.15em;
+  padding: 15px 20px;
+  position: relative;
+}
+
+.underline:hover {
+  box-shadow: 0 5px 0 0 var(--aero-blue);
 }
