@@ -10,7 +10,7 @@
   <!----Google Fonts---->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Work+Sans:wght@100&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Work+Sans:wght@100;200;300&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/6da468cf6d.js" crossorigin="anonymous" defer ></script>
 </head>
@@ -40,20 +40,25 @@
       </section>
       <section id="chat-box-container">
         <div id="chat-box">
-          <ul>
+          <ul id="messages">
             <li class="chat-text">Hello!</li>
-            <li class="chat-text">My name is Mauricio Lovera</li>
-            <li class="chat-text">I'm a web developer based in Miami, FL</li>
-            <li class="chat-text">Continued Description...</li>
-            <li class="chat-text">Search for what you are looking for!</li>
-            <li class="chat-text">Example: Projects, About, Games...</li>
+            <li class="chat-text">My name is Mauricio Lovera and I'm a <br>Web Developer based in Miami, Florida!</li>
+            <li class="chat-text">Continue Description...</li> <!--If they press continue description then it'll load the rest of it after "Search for..."-->
+            <li class="chat-text">Or</li>
+            <li class="chat-text">Search for what you are looking for!</li> <!--Thinking about having it just be a case sensitive search that returns the results within the chat-box but then it'll just display which branch or section of the page it is actually on-->
+            <li class="chat-text">Example: Newest Project, Skills, Games...</li>
           </ul>
+          <!-- <ul id="response"> -->
+            <!-- <li class="response-text">Example: Newest Project, Skills, Games...</li> -->
+          <!-- </ul> -->
         </div>
-        <div></div>
+        <div>
       </section>
     </main>
     <footer>
-
+      <section id="input-field">
+        <input placeholder="Type Something!">
+      </section>
     </footer>
   </div>
 </body>
