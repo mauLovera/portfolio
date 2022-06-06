@@ -75,7 +75,7 @@ nav:last-of-type {
 nav {
   display: flex;
   margin-right: 2em;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 @media (max-width: 1257px) {
