@@ -69,6 +69,7 @@ nav:last-of-type {
 #icons > i {
   margin-right: 1em;
   font-size: 1.5em;
+  cursor: pointer;
 }
 
 nav {
@@ -79,12 +80,23 @@ nav {
   font-size: 1.5em;
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
   position: relative;
 }
 
 #nav-bar > li {
   margin-left: 4em;
   padding: 0;
+  cursor: pointer;
+}
+
+.underline {
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.underline:hover {
+  box-shadow: 0 5px 0 0 var(--aero-blue);
 }
 
 #mode-switch {
@@ -215,12 +227,4 @@ main {
   padding-left: 1em;
 }
 
-.underline {
-  letter-spacing: 0.15em;
-  padding: 15px 20px;
-  position: relative;
-}
 
-.underline:hover {
-  box-shadow: 0 5px 0 0 var(--aero-blue);
-}
