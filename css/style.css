@@ -72,18 +72,24 @@ nav:last-of-type {
   cursor: pointer;
 }
 
+#icons > i:hover {
+  color: var(--green);
+}
+
 nav {
   display: flex;
   margin-right: 2em;
+  height: 81px;
   /* border: 1px solid black; */
 }
 
-@media (max-width: 1257px) {
-
+@media (max-width: 1455px) {
   nav {
     justify-content: center;
-    align-items: center;
+    align-content: flex-end;
     flex-shrink: 1;
+    flex-direction: column;
+    position: relative;
   }
 
   #nav-bar > li {
@@ -95,13 +101,35 @@ nav {
     flex-direction: column;
     /* align-items: flex-end; */
     width: 80px;
+    cursor: pointer;
+    /* display: none; */
   }
   .ham-line {
     background-color: var(--aero-blue);
     height: 10px;
     margin: .5em;
   }
+
+  #ham-nav-bar {
+    background-color: var(--aero-blue);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ham-nav-li {
+    background-color: var(--aero-blue);
+    display: flex;
+  }
+  .visible {
+    display: none;
+  }
 }
+
+
+
 
 #nav-bar {
   font-size: 1.5em;
@@ -120,19 +148,24 @@ nav {
 
 .underline {
   position: relative;
+  padding: 1em;
 }
 
 .underline:hover {
-  box-shadow: 0 5px 0 0 var(--aero-blue);
+  background-color: var(--aero-blue);
+
 }
 
 #mode-switch {
-  padding: .1em .2em .1em 2em !important;
+  padding: .05em .1em .1em 1em !important;
+  display: flex;
   position: relative;
   top: -1px;
 
   background-color: var(--aero-blue);
   border-radius: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -152,6 +185,11 @@ main {
 
 #name {
   font-size: 6em;
+}
+
+.period {
+  color: var(--aero-blue);
+
 }
 
 #sub-name {
@@ -174,11 +212,6 @@ main {
   border-radius: 20px;
 }
 
-@media (min-width) {
-  #chat-box-container {
-    flex-direction: column;
-  }
-}
 
 #chat-box {
   height: 95%;
@@ -226,7 +259,8 @@ main {
   width: fit-content;
   font-size: 1.5em;
   font-weight: 200;
-  margin-right: auto !important;
+  align-self: flex-start !important;
+  margin-left: auto !important;
   text-align: left !important;
 }
 
@@ -257,4 +291,11 @@ main {
   padding-left: 1em;
 }
 
-
+@media (max-width: 768px) {
+  #chat-box-container {
+    width: 80vw;
+  }
+  #input-field > input {
+    width: 80vw;
+  }
+}
