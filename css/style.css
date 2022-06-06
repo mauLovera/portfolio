@@ -73,7 +73,7 @@ nav:last-of-type {
 }
 
 nav {
-  /* margin-right: 2em; */
+  margin-right: 2em;
 }
 
 #nav-bar {
@@ -88,10 +88,10 @@ nav {
   margin-left: 4em;
   padding: 0;
   cursor: pointer;
+  letter-spacing: 0.05em;
 }
 
 .underline {
-  letter-spacing: 0.05em;
   position: relative;
 }
 
@@ -138,6 +138,7 @@ main {
   right: 2em;
   top: 7.5em;
   height: 45vh;
+  width: 30vw;
   overflow: scroll;
   margin-left: auto;
   justify-content: center;
@@ -147,10 +148,8 @@ main {
 }
 
 @media (min-width) {
-
   #chat-box-container {
     flex-direction: column;
-
   }
 }
 
