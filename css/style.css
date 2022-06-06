@@ -73,7 +73,34 @@ nav:last-of-type {
 }
 
 nav {
+  display: flex;
   margin-right: 2em;
+  border: 1px solid black;
+}
+
+@media (max-width: 1257px) {
+
+  nav {
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 1;
+  }
+
+  #nav-bar > li {
+    display: none;
+  }
+
+  #hamburger {
+    align-self: center;
+    flex-direction: column;
+    /* align-items: flex-end; */
+    width: 80px;
+  }
+  .ham-line {
+    background-color: var(--aero-blue);
+    height: 10px;
+    margin: .5em;
+  }
 }
 
 #nav-bar {
@@ -138,7 +165,7 @@ main {
   right: 2em;
   top: 7.5em;
   height: 45vh;
-  width: 30vw;
+  width: 40vw;
   overflow: scroll;
   margin-left: auto;
   justify-content: center;
@@ -224,7 +251,7 @@ main {
   border-radius: 10px;
   border: none;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  width: 30vw;
+  width: 40vw;
   height: 3em;
   text-align: left;
   padding-left: 1em;
