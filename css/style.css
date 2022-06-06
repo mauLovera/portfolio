@@ -73,7 +73,7 @@ nav:last-of-type {
 }
 
 nav {
-  margin-right: 2em;
+  /* margin-right: 2em; */
 }
 
 #nav-bar {
@@ -119,7 +119,7 @@ main {
 }
 
 #hero {
-  margin-top: 15em;
+  margin-top: 15em; +  + 
   margin-left: 2em;
 }
 
@@ -138,16 +138,20 @@ main {
   right: 2em;
   top: 7.5em;
   height: 45vh;
-  width: 30vw; /* Responsive Check */
   overflow: scroll;
   margin-left: auto;
   justify-content: center;
   align-items: center;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  
-  /* background-color: var(--persian-green); */
-
   border-radius: 20px;
+}
+
+@media (min-width) {
+
+  #chat-box-container {
+    flex-direction: column;
+
+  }
 }
 
 #chat-box {
