@@ -8,12 +8,13 @@ import MobileMenu from './MobileMenu/MobileMenu'
 import { m } from 'framer-motion'
 import { useCallback, useRef, useState } from 'react'
 import styles from './Header.module.scss'
-import { rise } from '@/lib/motion'
+import { reveal, triggerProps } from '@/lib/motion'
+import { intro } from '@/lib/intro'
 
 //* === Variants * === //
-// Home waits for the landing banner; other pages animate in right away
-const homeLine = rise(200, 1.2, 1.5)
-const pageLine = rise(200, 1.2)
+// Home waits for the landing intro; other pages animate in right away
+const homeLine = reveal({ speed: 'slow', delay: intro.header })
+const pageLine = reveal({ speed: 'slow' })
 
 interface Props {
   home: boolean
@@ -33,7 +34,7 @@ export default function Header({ home, numberOfProjects }: Props) {
 
   return (
     <header className={styles.container}>
-      <m.nav initial="initial" animate="animate">
+      <m.nav {...triggerProps('mount')}>
         <m.div className={styles.name} variants={lineAnimation}>
           <Link href={'/'}>Mauricio Lovera</Link>
         </m.div>

@@ -5,13 +5,10 @@ import { RiArrowRightCircleFill } from 'react-icons/ri'
 import styles from './ContactForm.module.scss'
 import { m } from 'framer-motion'
 import { FormEvent, useState } from 'react'
-import { ease, stagger } from '@/lib/motion'
+import { delay, fadeUp, group, stagger, triggerProps } from '@/lib/motion'
 
-const timeline = stagger(0.1, 0.6)
-const fieldAnimation = {
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0, transition: { ease, duration: 0.8 } },
-}
+// Fields follow the page banner in
+const fields = group({ delay: delay.follow, stagger: stagger.line })
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
@@ -45,21 +42,20 @@ export default function ContactForm() {
     <m.form
       className={styles.container}
       onSubmit={handleSubmit}
-      variants={timeline}
-      initial="initial"
-      animate="animate"
+      variants={fields}
+      {...triggerProps('mount')}
     >
-      <m.label className={styles.field} variants={fieldAnimation}>
+      <m.label className={styles.field} variants={fadeUp}>
         <span>Name</span>
         <input name="name" type="text" autoComplete="name" maxLength={200} required />
       </m.label>
-      <m.label className={styles.field} variants={fieldAnimation}>
+      <m.label className={styles.field} variants={fadeUp}>
         <span>Email</span>
         <input name="email" type="email" autoComplete="email" maxLength={320} required />
       </m.label>
       <m.label
         className={`${styles.field} ${styles.wide}`}
-        variants={fieldAnimation}
+        variants={fadeUp}
       >
         <span>Message</span>
         <textarea name="message" rows={6} maxLength={5000} required />
@@ -75,7 +71,7 @@ export default function ContactForm() {
         aria-hidden
       />
 
-      <m.div className={styles.footer} variants={fieldAnimation}>
+      <m.div className={styles.footer} variants={fadeUp}>
         <button type="submit" disabled={status === 'sending'}>
           <span>{status === 'sending' ? 'Sending' : 'Send'}</span>
           <RiArrowRightCircleFill />

@@ -7,16 +7,11 @@ import ActiveLink from '@/components/common/ActiveLink/ActiveLink'
 import { AnimatePresence, m } from 'framer-motion'
 import { MouseEvent, useEffect, useRef } from 'react'
 import styles from './MobileMenu.module.scss'
-import { ease, rise, stagger } from '@/lib/motion'
+import Reveal from '@/components/common/motion/Reveal/Reveal'
+import { curtain, duration, stagger, triggerProps } from '@/lib/motion'
 
-//* === Variants === *//
-const overlay = {
-  initial: { clipPath: 'inset(0 0 100% 0)' },
-  animate: { clipPath: 'inset(0 0 0% 0)', transition: { ease, duration: 0.6 } },
-  exit: { clipPath: 'inset(0 0 100% 0)', transition: { ease, duration: 0.5 } },
-}
-const list = stagger(0.08, 0.25)
-const linkAnimation = rise(120, 0.8)
+// Links start rising halfway through the curtain opening
+const links = { delay: duration.fast / 2, stagger: stagger.line }
 
 interface Props {
   open: boolean
@@ -65,9 +60,8 @@ export default function MobileMenu({ open, onClose, numberOfProjects }: Props) {
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
-          variants={overlay}
-          initial="initial"
-          animate="animate"
+          variants={curtain}
+          {...triggerProps('mount')}
           exit="exit"
           onClick={handleClick}
         >
@@ -78,7 +72,7 @@ export default function MobileMenu({ open, onClose, numberOfProjects }: Props) {
             </button>
           </div>
 
-          <m.ul className={styles.links} variants={list}>
+          <Reveal as="ul" className={styles.links} trigger="parent" timing={links}>
             {[
               { text: 'Home', url: '' },
               { text: 'Projects', url: 'projects', amount: numberOfProjects },
@@ -86,12 +80,12 @@ export default function MobileMenu({ open, onClose, numberOfProjects }: Props) {
               { text: 'Contact', url: 'contact' },
             ].map((link) => (
               <li key={link.url}>
-                <m.span variants={linkAnimation}>
+                <Reveal.Item speed="medium">
                   <ActiveLink {...link} />
-                </m.span>
+                </Reveal.Item>
               </li>
             ))}
-          </m.ul>
+          </Reveal>
 
           <div className={styles.icons}>
             <Link href={'https://github.com/mauLovera'} aria-label="GitHub">

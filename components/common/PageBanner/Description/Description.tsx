@@ -1,9 +1,9 @@
-import styles from './Description.module.scss'
-import { m } from 'framer-motion'
-import { lineAnimation, stagger } from '@/lib/motion'
-
-const timeline = stagger(0.1, 0.1)
+//* === Components === *//
 import Link from 'next/link'
+import Reveal from '@/components/common/motion/Reveal/Reveal'
+
+//* === Styles & Utils === *//
+import styles from './Description.module.scss'
 
 interface Props {
   description: string
@@ -16,42 +16,33 @@ export default function Description({
   description,
   deployment,
   github,
-  linkedIn
+  linkedIn,
 }: Props) {
   return (
-    <m.p
-      className={styles.container}
-      variants={timeline}
-      animate="animate"
-      initial="initial"
-    >
-      <m.span variants={lineAnimation}>{description}</m.span>
+    <Reveal as="p" className={styles.container} trigger="mount">
+      <Reveal.Item>{description}</Reveal.Item>
 
       {deployment && github && (
-        <>
-          <m.span className={styles.links} variants={lineAnimation}>
-            <Link href={deployment ? deployment : '/'} className={styles.link}>
-              Deployment
-            </Link>
-            <Link href={github ? github : '/'} className={styles.link}>
-              GitHub
-            </Link>
-          </m.span>
-        </>
+        <Reveal.Item className={styles.links}>
+          <Link href={deployment} className={styles.link}>
+            Deployment
+          </Link>
+          <Link href={github} className={styles.link}>
+            GitHub
+          </Link>
+        </Reveal.Item>
       )}
 
       {linkedIn && github && (
-        <>
-          <m.span className={styles.links} variants={lineAnimation}>
-            <Link href={linkedIn ? linkedIn : '/'} className={styles.link}>
-              LinkedIn
-            </Link>
-            <Link href={github ? github : '/'} className={styles.link}>
-              GitHub
-            </Link>
-          </m.span>
-        </>
+        <Reveal.Item className={styles.links}>
+          <Link href={linkedIn} className={styles.link}>
+            LinkedIn
+          </Link>
+          <Link href={github} className={styles.link}>
+            GitHub
+          </Link>
+        </Reveal.Item>
       )}
-    </m.p>
+    </Reveal>
   )
 }

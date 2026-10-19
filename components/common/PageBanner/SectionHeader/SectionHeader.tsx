@@ -1,31 +1,22 @@
-import { m } from 'framer-motion'
+//* === Components === *//
+import SplitText from '@/components/common/motion/SplitText/SplitText'
 
 //* === Styles & Utils === *//
 import styles from './SectionHeader.module.scss'
-import { letterAnimation, stagger } from '@/lib/motion'
-
-const timeline = stagger(0.1, 0.1)
+import { stagger } from '@/lib/motion'
 
 interface Props {
   title: string
 }
 
 export default function SectionHeader({ title }: Props) {
-  const text: string[] = [`${title}`]
   return (
-    <m.h1
-      aria-label={title}
+    <SplitText
+      as="h1"
       className={styles.container}
-      id={title.length > 10 ? styles.large : ''}
-      variants={timeline}
-      animate="animate"
-      initial="initial"
-    >
-      {[...text[0]].map((letter, idx) => (
-        <m.span aria-hidden key={idx} variants={letterAnimation}>
-          {letter}
-        </m.span>
-      ))}
-    </m.h1>
+      id={title.length > 10 ? styles.large : undefined}
+      timing={{ stagger: stagger.heroLetter }}
+      text={title}
+    />
   )
 }

@@ -4,11 +4,8 @@ import { RiArrowRightCircleFill } from 'react-icons/ri'
 
 //* === Styles & Utils === *//
 import styles from './Description.module.scss'
-import { m } from 'framer-motion'
+import Reveal from '@/components/common/motion/Reveal/Reveal'
 import { projects } from '@/lib/projects'
-import { lineAnimation, stagger } from '@/lib/motion'
-
-const timeline = stagger(0.05)
 
 interface Props {
   title: string
@@ -26,11 +23,9 @@ export default function Description({ title, description, tech }: Props) {
         </div>
         <Link href={`/projects/${title.toLowerCase().replace(/ /g, '-')}`}>
           <div className={styles.title} >
-            <m.h2 variants={timeline} initial='initial' whileInView={'animate'} viewport={{ once: true }}>
-              <m.span variants={lineAnimation} >
-                {title}
-              </m.span>
-            </m.h2>
+            <Reveal as="h2">
+              <Reveal.Item>{title}</Reveal.Item>
+            </Reveal>
             <RiArrowRightCircleFill className={styles.arrow} />
           </div>
         </Link>

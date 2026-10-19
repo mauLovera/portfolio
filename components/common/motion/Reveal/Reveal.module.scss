@@ -1,0 +1,10 @@
+// Low-specificity defaults (:where) so callers' classes always win
+
+:where(.mask) {
+  display: block;
+  overflow: hidden;
+}
+
+:where(.item) {
+  display: block;
+}
