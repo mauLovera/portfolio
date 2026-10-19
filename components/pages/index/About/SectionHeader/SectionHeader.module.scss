@@ -1,4 +1,4 @@
-@import '~styles/utilities/_palette.scss';
+@use "~styles/utilities/palette" as *;
 
 .container {
   display: flex;

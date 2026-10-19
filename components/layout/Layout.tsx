@@ -10,17 +10,17 @@ import { projects } from '@/lib/projects'
 
 import { ReactNode, useState } from 'react'
 interface Props {
-  title: string
-  description: string
-  keywords: string
+  title?: string
+  description?: string
+  keywords?: string
   children: ReactNode
   home: boolean
 }
 
 export default function Layout({
-  title,
-  description,
-  keywords,
+  title = 'Mauricio Lovera | Full Stack Web Developer',
+  description = 'Portfolio website for Mauricio Lovera | Full Stack Web Developer',
+  keywords = 'portfolio, full stack, web developer',
   children,
   home,
 }: Props) {
@@ -38,11 +38,4 @@ export default function Layout({
       <Footer numberOfProjects={numberOfProjects} />
     </>
   )
-}
-
-Layout.defaultProps = {
-  title: 'Mauricio Lovera | Full Stack Web Developer',
-  description:
-    'Portfolio website for Mauricio Lovera | Full Stack Web Developer',
-  keywords: 'portfolio, full stack, web developer',
 }

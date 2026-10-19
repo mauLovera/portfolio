@@ -41,7 +41,7 @@ export default function Description({ title, description, tech }: Props) {
           <span className={styles.ascendingNumber}></span>
           <span>/00-{projects.length}</span>
         </div>
-        <Link href={`/projects/${title.toLowerCase()}`}>
+        <Link href={`/projects/${title.toLowerCase().replace(/ /g, '-')}`}>
           <div className={styles.title} >
             <motion.h2 variants={timeline} initial='initial' whileInView={'animate'} viewport={{ once: true }}>
               <motion.span variants={lineAnimation} >

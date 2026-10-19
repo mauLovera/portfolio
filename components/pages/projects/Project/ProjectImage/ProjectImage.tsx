@@ -12,7 +12,7 @@ interface Props {
 export default function ProjectImage({ title }: Props) {
   return (
     <div className={styles.container}>
-      <Link href={`/projects/${title.toLowerCase()}`}>
+      <Link href={`/projects/${title.toLowerCase().replace(/ /g, '-')}`}>
         <Image
           alt={title}
           src={`/images/project-images/${title.toLowerCase()}.png`}

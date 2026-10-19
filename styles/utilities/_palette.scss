@@ -1,7 +1,9 @@
+@use "sass:math";
+
 //* === Sizing === // 
 
 @function toRem($value) {
-  $rem: (($value / 16) * 1.25) + rem;
+  $rem: (math.div($value, 16) * 1.25) + rem;
   @return $rem;
 }
 
@@ -48,6 +50,6 @@ $inactive-clr: rgba(128, 128, 128, 0.5);
 //* === Fonts === //
 
 @mixin ff-primary {
-  font-family: 'Poppins';
+  font-family: var(--font-primary), sans-serif;
 }
 

@@ -75,7 +75,7 @@ function TopRow() {
 }
 
 function BottomRows() {
-  const text: string[] = ['A full stack web', 'developer based', 'in Miami.']
+  const text: string[] = ['A full stack web', 'developer based', 'in the US.']
 
   return (
     <motion.span

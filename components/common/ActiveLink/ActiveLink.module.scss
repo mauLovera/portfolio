@@ -1,4 +1,4 @@
-@import '~styles/utilities/palette.scss';
+@use "~styles/utilities/palette" as *;
 
 .active {
   color: $accent-clr;
