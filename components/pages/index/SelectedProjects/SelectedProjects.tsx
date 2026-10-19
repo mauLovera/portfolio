@@ -10,12 +10,14 @@ import { useState } from 'react'
 
 //* === Variants === *//
 import {
-  timeline,
   buttonAnimation,
   letterAnimation,
-  letterTimeline,
   lineAnimation,
-} from './variants'
+  stagger,
+} from '@/lib/motion'
+
+const timeline = stagger(0.5)
+const letterTimeline = stagger(0.025, 0.4)
 
 export default function SelectedProjects() {
   const [focus, setFocus] = useState<string>('')

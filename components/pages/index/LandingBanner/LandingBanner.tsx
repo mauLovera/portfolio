@@ -1,94 +1,70 @@
 //* === Styles & Utils === *//
 import styles from './LandingBanner.module.scss'
-import { motion, type Variants } from 'framer-motion'
+import { m } from 'framer-motion'
+import { letterAnimation, rise, stagger, underlineAnimation } from '@/lib/motion'
 
 //* === Variants === //
-const banner: Variants  = {
-  animate: {
-    transition: {
-      delayChildren: 0.4,
-      staggerChildren: 0.1,
-    },
-  },
-}
-const letterAnimation: Variants  = {
-  initial: { y: 400 },
-  animate: {
-    y: 0,
-    transition: {
-      ease: [0.6, 0.01, -0.05, 0.95],
-      duration: 1,
-    },
-  },
-}
+const banner = stagger(0.05, 0.2)
+const lines = stagger(0.1)
+const lineAnimation = rise(650, 1.2, 0.6)
+const underline = underlineAnimation(0.8)
 
-const lineAnimation: Variants  = {
-  initial: { y: 650 },
-  animate: {
-    y: 0,
-    transition: {
-      ease: [0.6, 0.01, -0.05, 0.95],
-      duration: 2,
-      delay: 2,
-    },
-  },
-}
+const top: string[] = ["I'm", 'Mauricio.']
+const bottom: string[] = ['A full stack web', 'developer based', 'in the US.']
 
 export default function LandingBanner() {
   return (
     <section className={styles.container}>
-      <motion.h1 variants={banner}>
+      <h1 aria-label={`${top.join(' ')} ${bottom.join(' ')}`}>
         <TopRow />
         <BottomRows />
-      </motion.h1>
+      </h1>
     </section>
   )
 }
 
 function TopRow() {
-  const text: string[] = ["I'm", 'Mauricio.']
-
   return (
-    <motion.span
+    <m.span
       className={styles.top}
       variants={banner}
       initial="initial"
       animate="animate"
+      aria-hidden
     >
-      {[...text[0]].map((letter, idx) => (
-        <motion.span key={idx} variants={letterAnimation}>
+      {[...top[0]].map((letter, idx) => (
+        <m.span key={idx} variants={letterAnimation}>
           {letter}
-        </motion.span>
+        </m.span>
       ))}
 
-      {[...text[1]].map((letter, idx) => (
-        <motion.span
-          key={idx}
-          variants={letterAnimation}
-          className={styles.accent}
-        >
-          {letter}
-        </motion.span>
-      ))}
-    </motion.span>
+      {/* One wrapper so the underline spans the whole word, not each letter */}
+      <span className={styles.accent}>
+        {[...top[1]].map((letter, idx) => (
+          <m.span key={idx} variants={letterAnimation}>
+            {letter}
+          </m.span>
+        ))}
+        <m.span className={styles.underline} variants={underline} />
+      </span>
+    </m.span>
   )
 }
 
 function BottomRows() {
-  const text: string[] = ['A full stack web', 'developer based', 'in the US.']
-
   return (
-    <motion.span
+    <m.span
       className={styles.bottom}
-      variants={banner}
+      variants={lines}
       initial="initial"
       animate="animate"
+      aria-hidden
     >
-      {[...text].map((letter, idx) => (
-        <motion.span key={idx} variants={lineAnimation}>
-          {letter}
-        </motion.span>
+      {bottom.map((line, idx) => (
+        <m.span key={idx} variants={lineAnimation}>
+          {line}
+        </m.span>
       ))}
-    </motion.span>
+    </m.span>
   )
 }

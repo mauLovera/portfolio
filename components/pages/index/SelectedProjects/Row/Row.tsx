@@ -4,7 +4,7 @@ import { RiArrowRightCircleFill } from 'react-icons/ri'
 
 //* === Styles & Utils === *//
 import styles from './Row.module.scss'
-import { motion, Variants } from 'framer-motion'
+import { m, Variants } from 'framer-motion'
 
 interface Props {
   title: string
@@ -35,45 +35,45 @@ export default function Row({
       onMouseEnter={() => mouseEnter(title)}
       onMouseLeave={mouseExit}
     >
-      <motion.span
+      <m.span
         className={styles.titleContainer}
         variants={timeline}
         initial="initial"
         whileInView={'animate'}
         viewport={{ once: true }}
       >
-        <motion.span
+        <m.span
           variants={animation.lineAnimation}
           className={styles.title}
         >
           {title}
-        </motion.span>
-      </motion.span>
-      <motion.span
+        </m.span>
+      </m.span>
+      <m.span
         variants={timeline}
         initial="initial"
         whileInView={'animate'}
         viewport={{ once: true }}
         className={styles.techContainer}
       >
-        <motion.span variants={animation.lineAnimation} className={styles.tech}>
+        <m.span variants={animation.lineAnimation} className={styles.tech}>
           {tech}
-        </motion.span>
-      </motion.span>
-      <motion.span
+        </m.span>
+      </m.span>
+      <m.span
         variants={timeline}
         initial="initial"
         whileInView={'animate'}
         viewport={{ once: true }}
         className={styles.button}
       >
-        <motion.span
+        <m.span
           variants={animation.buttonAnimation}
           className={styles.arrow}
         >
           <RiArrowRightCircleFill />
-        </motion.span>
-      </motion.span>
+        </m.span>
+      </m.span>
     </Link>
   )
 }

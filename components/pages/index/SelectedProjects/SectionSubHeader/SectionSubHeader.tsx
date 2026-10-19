@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { RiArrowRightCircleFill } from 'react-icons/ri'
 
 //* === Styles & Utils === *//
-import { motion, Variants } from 'framer-motion'
+import { m, Variants } from 'framer-motion'
 import styles from './SectionSubHeader.module.scss'
 
 interface Props {
@@ -21,26 +21,26 @@ export default function SectionSubHeader({ timeline, animation }: Props) {
     'projects page.',
   ]
   return (
-    <motion.p
+    <m.p
       variants={timeline}
       initial="initial"
       whileInView={'animate'}
       viewport={{ once: true }}
       className={styles.container}
     >
-      <motion.span variants={animation.lineAnimation}>
+      <m.span variants={animation.lineAnimation}>
         {text[0]}
         {text[1]}
         <Link href={'/projects'} className={styles.accent}>
           {text[2]}
-          <motion.span
+          <m.span
             className={styles.arrow}
             variants={animation.buttonAnimation}
           >
             <RiArrowRightCircleFill />
-          </motion.span>
+          </m.span>
         </Link>
-      </motion.span>
-    </motion.p>
+      </m.span>
+    </m.p>
   )
 }

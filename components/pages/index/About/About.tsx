@@ -4,19 +4,19 @@ import Description from './Description/Description'
 
 //* === Styles & Utils === *//
 import styles from './About.module.scss'
-import { motion } from 'framer-motion'
 import {
   letterAnimation,
   lineAnimation,
   buttonAnimation,
-  timeline,
-  letterTimeline,
-} from './variants'
+  stagger,
+} from '@/lib/motion'
+
+const letterTimeline = stagger(0.05)
 
 export default function About() {
   const text: string[] = ['About']
   return (
-    <motion.section className={styles.container}>
+    <section className={styles.container}>
       <SectionHeader
         text={text}
         animation={letterAnimation}
@@ -26,6 +26,6 @@ export default function About() {
         animation={{ lineAnimation, buttonAnimation }}
         timeline={letterTimeline}
       />
-    </motion.section>
+    </section>
   )
 }

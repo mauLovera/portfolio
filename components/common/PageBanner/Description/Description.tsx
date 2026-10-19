@@ -1,6 +1,8 @@
 import styles from './Description.module.scss'
-import { motion } from 'framer-motion'
-import { lineAnimation, timeline } from '../variants'
+import { m } from 'framer-motion'
+import { lineAnimation, stagger } from '@/lib/motion'
+
+const timeline = stagger(0.1, 0.1)
 import Link from 'next/link'
 
 interface Props {
@@ -17,39 +19,39 @@ export default function Description({
   linkedIn
 }: Props) {
   return (
-    <motion.p
+    <m.p
       className={styles.container}
       variants={timeline}
       animate="animate"
       initial="initial"
     >
-      <motion.span variants={lineAnimation}>{description}</motion.span>
+      <m.span variants={lineAnimation}>{description}</m.span>
 
       {deployment && github && (
         <>
-          <motion.span className={styles.links} variants={lineAnimation}>
+          <m.span className={styles.links} variants={lineAnimation}>
             <Link href={deployment ? deployment : '/'} className={styles.link}>
               Deployment
             </Link>
             <Link href={github ? github : '/'} className={styles.link}>
               GitHub
             </Link>
-          </motion.span>
+          </m.span>
         </>
       )}
 
       {linkedIn && github && (
         <>
-          <motion.span className={styles.links} variants={lineAnimation}>
+          <m.span className={styles.links} variants={lineAnimation}>
             <Link href={linkedIn ? linkedIn : '/'} className={styles.link}>
               LinkedIn
             </Link>
             <Link href={github ? github : '/'} className={styles.link}>
               GitHub
             </Link>
-          </motion.span>
+          </m.span>
         </>
       )}
-    </motion.p>
+    </m.p>
   )
 }

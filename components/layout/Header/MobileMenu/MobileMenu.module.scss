@@ -1,0 +1,86 @@
+@use "~styles/utilities/palette" as *;
+
+.container {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  padding-inline: $padding-mid;
+  padding-bottom: $size_32px;
+
+  @media (max-width: 600px) {
+    padding-inline: $padding-small;
+  }
+
+  @media (min-width: 940px) {
+    display: none;
+  }
+
+  background-color: black;
+  color: whitesmoke;
+
+  a {
+    transition: color $transition-speed;
+
+    &:hover,
+    &:focus-visible {
+      color: $accent-clr;
+    }
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: $size_96px;
+    flex-shrink: 0;
+    font-size: $size_14px;
+
+    @media (max-width: 600px) {
+      font-size: $size_12px;
+    }
+
+    button {
+      padding: 0;
+      border: none;
+      background: none;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      transition: color $transition-speed;
+
+      &:hover,
+      &:focus-visible {
+        color: $accent-clr;
+      }
+    }
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    gap: $size_8px;
+
+    font-size: clamp(2.5rem, 12vw, 4.5rem);
+    line-height: 1.2;
+    letter-spacing: -1px;
+
+    li {
+      overflow: hidden;
+    }
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  .icons {
+    display: flex;
+    gap: $size_24px;
+    font-size: $size_24px;
+  }
+}

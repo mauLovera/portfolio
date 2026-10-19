@@ -60,33 +60,20 @@
 
       .accent {
         position: relative;
-
-        //! Temporary Fix
-        left: 3vmin;
+        display: flex;
+        margin-left: 0.25em;
 
         color: $accent-clr;
 
-        //! Underline Animation
-        &::after {
+        //! Underline (animated by Framer Motion)
+        .underline {
           position: absolute;
-          content: '';
           bottom: 0.5vmin;
           left: 0;
+          width: 100%;
           height: 1vmin;
-          background-color: red;
-          animation-name: underline;
-          animation-delay: 4s;
-          animation-duration: 1s;
-          animation-fill-mode: forwards;
-
-          @keyframes underline {
-            from {
-              width: 0;
-            }
-            to {
-              width: 100%;
-            }
-          }
+          background-color: $accent-clr;
+          transform-origin: left;
         }
       }
     }
