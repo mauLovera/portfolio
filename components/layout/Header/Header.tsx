@@ -12,7 +12,7 @@ import { rise } from '@/lib/motion'
 
 //* === Variants * === //
 // Home waits for the landing banner; other pages animate in right away
-const homeLine = rise(200, 1.2, 0.8)
+const homeLine = rise(200, 1.2, 1.5)
 const pageLine = rise(200, 1.2)
 
 interface Props {

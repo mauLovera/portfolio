@@ -4,10 +4,12 @@ import { m } from 'framer-motion'
 import { letterAnimation, rise, stagger, underlineAnimation } from '@/lib/motion'
 
 //* === Variants === //
-const banner = stagger(0.05, 0.2)
-const lines = stagger(0.1)
-const lineAnimation = rise(650, 1.2, 0.6)
-const underline = underlineAnimation(0.8)
+// Letters: original timing. The underline's own delay is absolute (it ignores the
+// stagger), timed to start as the last letter lands: 0.4 + 11 * 0.1 + 1s
+const banner = stagger(0.1, 0.4)
+const lines = stagger(0.15, 1.6)
+const lineAnimation = rise(650, 1.2)
+const underline = underlineAnimation(2.5)
 
 const top: string[] = ["I'm", 'Mauricio.']
 const bottom: string[] = ['A full stack web', 'developer based', 'in the US.']

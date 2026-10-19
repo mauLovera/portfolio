@@ -11,11 +11,13 @@ export const stagger = (staggerChildren: number, delayChildren = 0): Variants =>
   },
 })
 
-export const rise = (y: number, duration = 1, delay = 0): Variants => ({
+// Only set `delay` when asked: an explicit child delay (even 0) overrides the
+// parent's staggerChildren/delayChildren, so letters would animate all at once
+export const rise = (y: number, duration = 1, delay?: number): Variants => ({
   initial: { y },
   animate: {
     y: 0,
-    transition: { ease, duration, delay },
+    transition: delay === undefined ? { ease, duration } : { ease, duration, delay },
   },
 })
 
