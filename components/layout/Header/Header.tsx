@@ -2,16 +2,19 @@
 import Link from 'next/link'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import ActiveLink from '@/components/common/ActiveLink/ActiveLink'
+import MobileMenu from './MobileMenu/MobileMenu'
 
 //* === Styles & Utils === *//
-import { motion, Variants } from 'framer-motion'
-import { useState } from 'react'
+import { m } from 'framer-motion'
+import { useCallback, useRef, useState } from 'react'
 import styles from './Header.module.scss'
+import { reveal, triggerProps } from '@/lib/motion'
+import { intro } from '@/lib/intro'
 
 //* === Variants * === //
-const timeline = {
-  animate: {},
-}
+// Home waits for the landing intro; other pages animate in right away
+const homeLine = reveal({ speed: 'slow', delay: intro.header })
+const pageLine = reveal({ speed: 'slow' })
 
 interface Props {
   home: boolean
@@ -19,78 +22,54 @@ interface Props {
 }
 
 export default function Header({ home, numberOfProjects }: Props) {
-  const lineAnimation: Variants = {
-    initial: { y: 200 },
-    animate: {
-      y: 0,
-      transition: {
-        ease: [0.6, 0.01, -0.05, 0.95],
-        duration: 1.5,
-        delay: home ? 1.5 : 0,
-      },
-    },
-  }
+  const lineAnimation = home ? homeLine : pageLine
 
-  const [active, setActive] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
+  const menuButton = useRef<HTMLButtonElement>(null)
 
-  function handleClick() {
-    setActive(!active)
-  }
+  const closeMenu = useCallback(() => {
+    setOpen(false)
+    menuButton.current?.focus()
+  }, [])
 
   return (
     <header className={styles.container}>
-      <motion.nav
-        variants={timeline}
-        initial="initial"
-        animate="animate"
-        transition={{ delay: home ? 2 : 0 }}
-      >
-        <motion.div className={styles.name} variants={lineAnimation}>
+      <m.nav {...triggerProps('mount')}>
+        <m.div className={styles.name} variants={lineAnimation}>
           <Link href={'/'}>Mauricio Lovera</Link>
-        </motion.div>
-        <motion.div className={styles.title} variants={lineAnimation}>
+        </m.div>
+        <m.div className={styles.title} variants={lineAnimation}>
           <span>Full Stack Web Developer</span>
-          <Link href={'https://github.com/mauLovera'}>
+          <Link href={'https://github.com/mauLovera'} aria-label="GitHub">
             <FaGithub />
           </Link>
-          <Link href={'https://www.linkedin.com/in/mauriciolovera001/'}>
+          <Link href={'https://www.linkedin.com/in/mauriciolovera001/'} aria-label="LinkedIn">
             <FaLinkedin />
           </Link>
-        </motion.div>
-        <motion.div className={styles.links} variants={lineAnimation}>
+        </m.div>
+        <m.div className={styles.links} variants={lineAnimation}>
           <ActiveLink text="Home" url="" />
           <ActiveLink text="Projects" url="projects" amount={numberOfProjects} />
           <ActiveLink text="About" url="about" />
           <ActiveLink text="Contact" url="contact" />
-        </motion.div>
-        <motion.div className={styles.menu} variants={lineAnimation}>
-          <span onClick={() => handleClick()}>Menu</span>
-          <div
-            className={styles.navigation}
-            style={
-              active
-                ? { display: 'flex' }
-                : { display: 'none', background: 'transparent' }
-            }
+        </m.div>
+        <m.div className={styles.menu} variants={lineAnimation}>
+          <button
+            ref={menuButton}
+            type="button"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen(true)}
           >
-            <ActiveLink text="Home" url="" />
-            <ActiveLink text="Projects" url="projects" amount={numberOfProjects} />
-            <ActiveLink text="About" url="about" />
-            <ActiveLink text="Contact" url="contact" />
-            <div className={styles.icons}>
-              <Link href={'https://github.com/mauLovera'}>
-                <FaGithub />
-              </Link>
-              <Link href={'https://www.linkedin.com/in/mauriciolovera001/'}>
-                <FaLinkedin />
-              </Link>
-            </div>
-            <div className={styles.exit} onClick={() => handleClick()}>
-              X
-            </div>
-          </div>
-        </motion.div>
-      </motion.nav>
+            Menu
+          </button>
+        </m.div>
+      </m.nav>
+      <MobileMenu
+        open={open}
+        onClose={closeMenu}
+        numberOfProjects={numberOfProjects}
+      />
     </header>
   )
 }

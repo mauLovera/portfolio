@@ -1,94 +1,37 @@
+//* === Components === *//
+import SplitText from '@/components/common/motion/SplitText/SplitText'
+import Reveal from '@/components/common/motion/Reveal/Reveal'
+
 //* === Styles & Utils === *//
 import styles from './LandingBanner.module.scss'
-import { motion, type Variants } from 'framer-motion'
-
-//* === Variants === //
-const banner: Variants  = {
-  animate: {
-    transition: {
-      delayChildren: 0.4,
-      staggerChildren: 0.1,
-    },
-  },
-}
-const letterAnimation: Variants  = {
-  initial: { y: 400 },
-  animate: {
-    y: 0,
-    transition: {
-      ease: [0.6, 0.01, -0.05, 0.95],
-      duration: 1,
-    },
-  },
-}
-
-const lineAnimation: Variants  = {
-  initial: { y: 650 },
-  animate: {
-    y: 0,
-    transition: {
-      ease: [0.6, 0.01, -0.05, 0.95],
-      duration: 2,
-      delay: 2,
-    },
-  },
-}
+import { hero, intro } from '@/lib/intro'
 
 export default function LandingBanner() {
   return (
     <section className={styles.container}>
-      <motion.h1 variants={banner}>
-        <TopRow />
-        <BottomRows />
-      </motion.h1>
-    </section>
-  )
-}
-
-function TopRow() {
-  const text: string[] = ["I'm", 'Mauricio.']
-
-  return (
-    <motion.span
-      className={styles.top}
-      variants={banner}
-      initial="initial"
-      animate="animate"
-    >
-      {[...text[0]].map((letter, idx) => (
-        <motion.span key={idx} variants={letterAnimation}>
-          {letter}
-        </motion.span>
-      ))}
-
-      {[...text[1]].map((letter, idx) => (
-        <motion.span
-          key={idx}
-          variants={letterAnimation}
-          className={styles.accent}
+      <h1 aria-label={`${hero.greeting} ${hero.name} ${hero.lines.join(' ')}`}>
+        <SplitText
+          className={styles.top}
+          timing={intro.letters}
+          text={[
+            { text: hero.greeting },
+            { text: hero.name, className: styles.accent, underline: true },
+          ]}
+        />
+        <Reveal
+          as="span"
+          className={styles.bottom}
+          trigger="mount"
+          timing={intro.lines}
+          aria-hidden
         >
-          {letter}
-        </motion.span>
-      ))}
-    </motion.span>
-  )
-}
-
-function BottomRows() {
-  const text: string[] = ['A full stack web', 'developer based', 'in the US.']
-
-  return (
-    <motion.span
-      className={styles.bottom}
-      variants={banner}
-      initial="initial"
-      animate="animate"
-    >
-      {[...text].map((letter, idx) => (
-        <motion.span key={idx} variants={lineAnimation}>
-          {letter}
-        </motion.span>
-      ))}
-    </motion.span>
+          {hero.lines.map((line) => (
+            <Reveal.Item key={line} speed="slow">
+              {line}
+            </Reveal.Item>
+          ))}
+        </Reveal>
+      </h1>
+    </section>
   )
 }

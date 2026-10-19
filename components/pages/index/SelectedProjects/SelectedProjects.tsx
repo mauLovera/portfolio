@@ -8,15 +8,6 @@ import SectionHeader from './SectionHeader/SectionHeader'
 import styles from './SelectedProjects.module.scss'
 import { useState } from 'react'
 
-//* === Variants === *//
-import {
-  timeline,
-  buttonAnimation,
-  letterAnimation,
-  letterTimeline,
-  lineAnimation,
-} from './variants'
-
 export default function SelectedProjects() {
   const [focus, setFocus] = useState<string>('')
   
@@ -31,22 +22,14 @@ export default function SelectedProjects() {
   return (
     <section className={styles.container}>
       <div className={styles.heading}>
-        <SectionHeader
-          timeline={letterTimeline}
-          animation={{ lineAnimation, letterAnimation }}
-        />
-        <SectionSubHeader
-          timeline={timeline}
-          animation={{ lineAnimation, buttonAnimation }}
-        />
+        <SectionHeader />
+        <SectionSubHeader />
       </div>
       <div className={styles.content}>
         <Slides focus={focus} />
         <List
-          animation={{ lineAnimation, buttonAnimation }}
           handleMouseEnter={handleMouseEnter}
           handleMouseExit={handleMouseExit}
-          timeline={timeline}
         />
       </div>
     </section>

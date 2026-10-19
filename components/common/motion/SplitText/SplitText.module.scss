@@ -1,0 +1,29 @@
+// Low-specificity defaults (:where) so callers' classes always win
+
+:where(.split) {
+  display: flex;
+  overflow: hidden;
+}
+
+:where(.word) {
+  position: relative;
+  display: flex;
+}
+
+.word + .word {
+  margin-left: 0.25em;
+}
+
+:where(.letter) {
+  display: inline-block;
+}
+
+.underline {
+  position: absolute;
+  bottom: 0.04em;
+  left: 0;
+  width: 100%;
+  height: 0.07em;
+  background-color: currentColor;
+  transform-origin: left;
+}

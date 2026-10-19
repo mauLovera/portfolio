@@ -1,65 +1,36 @@
 //* === Components === *//
 import Link from 'next/link'
 import { RiArrowRightCircleFill } from 'react-icons/ri'
+import Reveal from '@/components/common/motion/Reveal/Reveal'
 
 //* === Styles & Utils === *//
-import { motion, Variants } from 'framer-motion'
 import styles from './Description.module.scss'
 
-interface Props {
-  timeline: Variants
-  animation: {
-    lineAnimation: Variants
-    buttonAnimation: Variants
-  }
-}
-
-export default function Description({ timeline, animation }: Props) {
+export default function Description() {
   return (
     <div className={styles.container}>
-      <motion.p
-        variants={timeline}
-        initial="initial"
-        whileInView={'animate'}
-        viewport={{ once: true }}
-      >
-        <motion.span variants={animation.lineAnimation}>
+      <Reveal as="p">
+        <Reveal.Item>
           Hello, I{"'"}m a full stack web developer with a passion for
           programming and an eye for design.
-        </motion.span>
-      </motion.p>
-      <motion.p
-        variants={timeline}
-        initial="initial"
-        whileInView={'animate'}
-        viewport={{ once: true }}
-      >
-        <motion.span variants={animation.lineAnimation}>
+        </Reveal.Item>
+      </Reveal>
+      <Reveal as="p">
+        <Reveal.Item>
           When I{"'"}m not programming, you can find me with a guitar in hand,
           trekking through the city, or building sand castles with moats.
-        </motion.span>
-      </motion.p>
-      <motion.p
-        variants={timeline}
-        initial="initial"
-        whileInView={'animate'}
-        viewport={{ once: true }}
-      >
-        <motion.span
-          variants={animation.lineAnimation}
-          className={styles.accent}
-        >
+        </Reveal.Item>
+      </Reveal>
+      <Reveal as="p">
+        <Reveal.Item>
           <Link href="/about" className={styles.accent}>
             <span>More</span>
-            <motion.span
-              className={styles.arrow}
-              variants={animation.buttonAnimation}
-            >
+            <Reveal.Pop className={styles.arrow}>
               <RiArrowRightCircleFill />
-            </motion.span>
+            </Reveal.Pop>
           </Link>
-        </motion.span>
-      </motion.p>
+        </Reveal.Item>
+      </Reveal>
     </div>
   )
 }

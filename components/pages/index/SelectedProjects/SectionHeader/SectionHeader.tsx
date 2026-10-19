@@ -1,36 +1,16 @@
+//* === Components === *//
+import SplitText from '@/components/common/motion/SplitText/SplitText'
+
 //* === Styles & Utils === *//
-import { motion, Variants } from 'framer-motion'
 import styles from './SectionHeader.module.scss'
 
-interface Props {
-  timeline: Variants
-  animation: {
-    lineAnimation: Variants
-    letterAnimation: Variants
-  }
-}
-
-export default function SectionHeader({ timeline, animation }: Props) {
-  const text: string[] = ['Selected', ' Projects']
+export default function SectionHeader() {
   return (
-    <motion.h2
-      variants={timeline}
-      initial="initial"
-      whileInView={'animate'}
-      viewport={{ once : true }}
+    <SplitText
+      as="h2"
       className={styles.container}
-    >
-      {[...text[0]].map((letter, idx) => (
-        <motion.span key={idx} variants={animation.letterAnimation}>
-          {letter}
-        </motion.span>
-      ))}
-      <div className={styles.spaced} />
-      {[...text[1]].map((letter, idx) => (
-        <motion.span key={idx} variants={animation.letterAnimation}>
-          {letter}
-        </motion.span>
-      ))}
-    </motion.h2>
+      trigger="inView"
+      text="Selected Projects"
+    />
   )
 }

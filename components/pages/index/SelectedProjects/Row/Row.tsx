@@ -1,33 +1,20 @@
 //* === Components === *//
 import Link from 'next/link'
 import { RiArrowRightCircleFill } from 'react-icons/ri'
+import Reveal from '@/components/common/motion/Reveal/Reveal'
 
 //* === Styles & Utils === *//
 import styles from './Row.module.scss'
-import { motion, Variants } from 'framer-motion'
 
 interface Props {
   title: string
   tech: string[]
   path: string
-  timeline: Variants
-  animation: {
-    lineAnimation: Variants
-    buttonAnimation: Variants
-  }
   mouseEnter: (text: string) => void
   mouseExit: () => void
 }
 
-export default function Row({
-  title,
-  tech,
-  path,
-  timeline,
-  animation,
-  mouseEnter,
-  mouseExit,
-}: Props) {
+export default function Row({ title, tech, path, mouseEnter, mouseExit }: Props) {
   return (
     <Link
       href={path}
@@ -35,45 +22,17 @@ export default function Row({
       onMouseEnter={() => mouseEnter(title)}
       onMouseLeave={mouseExit}
     >
-      <motion.span
-        className={styles.titleContainer}
-        variants={timeline}
-        initial="initial"
-        whileInView={'animate'}
-        viewport={{ once: true }}
-      >
-        <motion.span
-          variants={animation.lineAnimation}
-          className={styles.title}
-        >
-          {title}
-        </motion.span>
-      </motion.span>
-      <motion.span
-        variants={timeline}
-        initial="initial"
-        whileInView={'animate'}
-        viewport={{ once: true }}
-        className={styles.techContainer}
-      >
-        <motion.span variants={animation.lineAnimation} className={styles.tech}>
-          {tech}
-        </motion.span>
-      </motion.span>
-      <motion.span
-        variants={timeline}
-        initial="initial"
-        whileInView={'animate'}
-        viewport={{ once: true }}
-        className={styles.button}
-      >
-        <motion.span
-          variants={animation.buttonAnimation}
-          className={styles.arrow}
-        >
+      <Reveal as="span" className={styles.titleContainer}>
+        <Reveal.Item className={styles.title}>{title}</Reveal.Item>
+      </Reveal>
+      <Reveal as="span" className={styles.techContainer}>
+        <Reveal.Item className={styles.tech}>{tech}</Reveal.Item>
+      </Reveal>
+      <Reveal as="span" className={styles.button}>
+        <Reveal.Pop className={styles.arrow}>
           <RiArrowRightCircleFill />
-        </motion.span>
-      </motion.span>
+        </Reveal.Pop>
+      </Reveal>
     </Link>
   )
 }

@@ -2,8 +2,15 @@
 import Image from 'next/image'
 
 //* === Styles & Utils === *//
-import { motion } from 'framer-motion'
 import styles from './Slides.module.scss'
+
+// Must match the rows in ../List/List.tsx
+const slides = [
+  { title: 'Manto Angelico', src: '/images/project-images/manto angelico.png' },
+  { title: 'Reactdoor', src: '/images/project-images/reactdoor.png' },
+  { title: 'Grimoire', src: '/images/project-images/grimoire.png' },
+  { title: 'Swirl', src: '/images/project-images/swirl.png' },
+]
 
 interface Props {
   focus: string
@@ -11,43 +18,21 @@ interface Props {
 
 export default function Slides({ focus }: Props) {
   return (
-    <motion.div className={styles.container}>
-      <Image
-        fill
-        alt={focus}
-        src={`/images/project-images/manto angelico.png`}
-        className={`${styles.image} ${
-          focus === 'manto angelico' ? styles.active : ''
-        }`}
-      />
-      <Image
-        fill
-        alt={focus}
-        src={`/images/project-images/reactdoor.png`}
-        className={`${styles.image} ${
-          focus === 'reactdoor' ? styles.active : ''
-        }`}
-      />
-      <Image
-        fill
-        alt={focus}
-        src={`/images/project-images/grimoire.png`}
-        className={`${styles.image} ${
-          focus === 'grimoire' ? styles.active : ''
-        }`}
-      />
-      <Image
-        fill
-        alt={focus}
-        src={`/images/project-images/swirl.png`}
-        className={`${styles.image} ${focus === 'swirl' ? styles.active : ''}`}
-      />
-      <Image
-        fill
-        alt={focus}
-        src={`/images/project-images/orbit.png`}
-        className={`${styles.image} ${focus === 'orbit' ? styles.active : ''}`}
-      />
-    </motion.div>
+    <div className={styles.container}>
+      {slides.map(({ title, src }) => (
+        <Image
+          key={title}
+          fill
+          // Hidden until hovered, so lazy loading meant a fast hover found nothing loaded
+          loading="eager"
+          sizes="(max-width: 780px) 1px, 50vw"
+          alt={`${title} screenshot`}
+          src={src}
+          className={`${styles.image} ${
+            focus === title.toLowerCase() ? styles.active : ''
+          }`}
+        />
+      ))}
+    </div>
   )
 }

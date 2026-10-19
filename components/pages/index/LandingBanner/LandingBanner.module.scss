@@ -38,7 +38,7 @@
 
 .container {
   display: flex;
-  justify-content: center;
+  width: 100%;
   max-width: $max-width;
   padding-bottom: $size_128px;
   @include paddingScale;
@@ -59,43 +59,14 @@
       overflow: hidden;
 
       .accent {
-        position: relative;
-
-        //! Temporary Fix
-        left: 3vmin;
-
         color: $accent-clr;
-
-        //! Underline Animation
-        &::after {
-          position: absolute;
-          content: '';
-          bottom: 0.5vmin;
-          left: 0;
-          height: 1vmin;
-          background-color: red;
-          animation-name: underline;
-          animation-delay: 4s;
-          animation-duration: 1s;
-          animation-fill-mode: forwards;
-
-          @keyframes underline {
-            from {
-              width: 0;
-            }
-            to {
-              width: 100%;
-            }
-          }
-        }
       }
     }
 
     .bottom {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       height: fit-content;
-      overflow: hidden;
     }
   }
 }
