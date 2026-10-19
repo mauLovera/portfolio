@@ -38,7 +38,7 @@
 
 .container {
   display: flex;
-  justify-content: center;
+  width: 100%;
   max-width: $max-width;
   padding-bottom: $size_128px;
   @include paddingScale;
